@@ -107,6 +107,12 @@ NodoListaDinamica* inserirNaListaDinamica(NodoListaDinamica* head, Dados* dados)
 void imprimirListaDinamicaOrdenada(NodoLista* listaNomes, NodoListaDinamica* listaDados) {
     NodoLista* nodoNomeAtual = listaNomes;
 
+    FILE* arquivo = fopen("relatorio.txt", "w");
+    if (arquivo == NULL) {
+        printf(RED "Erro ao criar o arquivo de relatorio.\n" RESET);
+        return;
+    }
+
     while (nodoNomeAtual != NULL) {
         NodoListaDinamica* nodoDadosAtual = listaDados;
 
@@ -114,8 +120,11 @@ void imprimirListaDinamicaOrdenada(NodoLista* listaNomes, NodoListaDinamica* lis
             Dados* dados = nodoDadosAtual->dados;
 
             if (strcmp(nodoNomeAtual->nome, dados->nome) == 0) {
-                printf(UNDERLINE "CPF: %s\n Nome: %s\n Endereco: %s\n Telefone: %s\n Email: %s\n" RESET,
+                printf(UNDERLINE " CPF: %s\n Nome: %s\n Endereco: %s\n Telefone: %s\n Email: %s\n\n" RESET,
                        dados->cpf, dados->nome, dados->endereco, dados->telefone, dados->email);
+
+                fprintf(arquivo, "CPF: %s\nNome: %s\nEndereco: %s\nTelefone: %s\nEmail: %s\n\n",
+                        dados->cpf, dados->nome, dados->endereco, dados->telefone, dados->email);
                 break;
             }
 
@@ -124,12 +133,26 @@ void imprimirListaDinamicaOrdenada(NodoLista* listaNomes, NodoListaDinamica* lis
 
         nodoNomeAtual = nodoNomeAtual->proximo;
     }
+
+    fclose(arquivo);
+    printf(GREEN "Relatorio gerado em 'relatorio.txt'.\n" RESET);
 }
 
+
 void adicionarRegistro(NodoLista** listaNomes, NodoArvore** arvoreCPFs, NodoListaDinamica** listaDados) {
-    char cpf[12];
-    printf("Digite o CPF: ");
-    scanf("%s", cpf);
+    char cpf[12]; // Buffer de 12 caracteres para conter 11 dígitos + '\0'
+
+    while (1) {
+        printf("Digite o CPF (somente números): ");
+        scanf("%s", cpf);
+
+        // Verifica se o CPF tem exatamente 11 caracteres e apenas dígitos numéricos
+        if (strlen(cpf) != 11 || strspn(cpf, "0123456789") != 11) {
+            printf(RED "CPF invalido. Tente novamente.\n" RESET);
+        } else {
+            break; // CPF válido
+        }
+    }
 
     NodoArvore* nodo = buscarNaArvore(*arvoreCPFs, cpf);
     if (nodo != NULL) {
@@ -137,25 +160,26 @@ void adicionarRegistro(NodoLista** listaNomes, NodoArvore** arvoreCPFs, NodoList
         return;
     }
 
+    // Limpa o buffer de entrada
     while (getchar() != '\n');
 
     char nome[100], endereco[200], telefone[15], email[100];
 
     printf("Digite o Nome: ");
     fgets(nome, sizeof(nome), stdin);
-    nome[strcspn(nome, "\n")] = '\0'; // remover o caractere de nova linha
+    nome[strcspn(nome, "\n")] = '\0';
 
     printf("Digite o Endereco: ");
     fgets(endereco, sizeof(endereco), stdin);
-    endereco[strcspn(endereco, "\n")] = '\0'; // remover o caractere de nova linha
+    endereco[strcspn(endereco, "\n")] = '\0';
 
     printf("Digite o Telefone: ");
     fgets(telefone, sizeof(telefone), stdin);
-    telefone[strcspn(telefone, "\n")] = '\0'; // remover o caractere de nova linha
+    telefone[strcspn(telefone, "\n")] = '\0';
 
     printf("Digite o Email: ");
     fgets(email, sizeof(email), stdin);
-    email[strcspn(email, "\n")] = '\0'; // remover o caractere de nova linha
+    email[strcspn(email, "\n")] = '\0';
 
     Dados* dados = criarDados(cpf, nome, endereco, telefone, email);
 
@@ -165,6 +189,8 @@ void adicionarRegistro(NodoLista** listaNomes, NodoArvore** arvoreCPFs, NodoList
 
     printf(GREEN "Registro adicionado com sucesso.\n" RESET);
 }
+
+
 
 void alterarRegistro(NodoLista** listaNomes, NodoArvore* arvoreCPFs, NodoListaDinamica* listaDados) {
     char cpf[12];
@@ -180,51 +206,74 @@ void alterarRegistro(NodoLista** listaNomes, NodoArvore* arvoreCPFs, NodoListaDi
     while (getchar() != '\n');
 
     char nome[100], endereco[200], telefone[15], email[100];
+    char nomeAntigo[100];
+    strcpy(nomeAntigo, nodo->dados->nome);
 
     printf("Insira os novos valores ou apenas aperte ENTER:\n");
 
-    printf("Nome: %s \nNovo valor: ", nodo->dados->nome);
+    printf("Nome: %s \nNovo nome: ", nodo->dados->nome);
     fgets(nome, sizeof(nome), stdin);
-    nome[strcspn(nome, "\n")] = '\0'; // remover o caractere de nova linha
+    nome[strcspn(nome, "\n")] = '\0';
     if (strlen(nome) > 0) {
         strcpy(nodo->dados->nome, nome);
     }
 
-    printf("Endereco: %s \nNovo valor: ", nodo->dados->endereco);
+    printf("Endereco: %s \nNovo endereco: ", nodo->dados->endereco);
     fgets(endereco, sizeof(endereco), stdin);
-    endereco[strcspn(endereco, "\n")] = '\0'; // remover o caractere de nova linha
+    endereco[strcspn(endereco, "\n")] = '\0';
     if (strlen(endereco) > 0) {
         strcpy(nodo->dados->endereco, endereco);
     }
 
-    printf("Telefone: %s \nNovo valor: ", nodo->dados->telefone);
+    printf("Telefone: %s \nNovo telefone: ", nodo->dados->telefone);
     fgets(telefone, sizeof(telefone), stdin);
-    telefone[strcspn(telefone, "\n")] = '\0'; // remover o caractere de nova linha
+    telefone[strcspn(telefone, "\n")] = '\0';
     if (strlen(telefone) > 0) {
         strcpy(nodo->dados->telefone, telefone);
     }
 
-    printf("Email: %s \nNovo valor: ", nodo->dados->email);
+    printf("Email: %s \nNovo email: ", nodo->dados->email);
     fgets(email, sizeof(email), stdin);
-    email[strcspn(email, "\n")] = '\0'; // remover o caractere de nova linha
+    email[strcspn(email, "\n")] = '\0';
     if (strlen(email) > 0) {
         strcpy(nodo->dados->email, email);
     }
 
-    NodoLista* nodoNomeAtual = *listaNomes;
-    while (nodoNomeAtual != NULL) {
-        if (strcmp(nodoNomeAtual->nome, nodo->dados->nome) == 0) {
-            // Atualizar o nome se ele foi modificado
-            if (strlen(nome) > 0) {
-                strcpy(nodoNomeAtual->nome, nome);
-            }
-            break;
-        }
-        nodoNomeAtual = nodoNomeAtual->proximo;
-    }
+    int confirmar;
+    printf(BOLD YELLOW "Confirma Alteracoes? (1 - Sim, 2 - Nao): " RESET);
+    scanf("%d", &confirmar);
 
-    printf(GREEN "Registro alterado com sucesso.\n" RESET);
+    if (confirmar == 1) {
+        // Reorganizar a lista de nomes se necessário
+        if (strcmp(nomeAntigo, nodo->dados->nome) != 0) {
+            NodoLista* atual = *listaNomes;
+            NodoLista* anterior = NULL;
+
+            while (atual != NULL) {
+                if (strcmp(atual->nome, nomeAntigo) == 0) {
+                    if (anterior == NULL) {
+                        *listaNomes = atual->proximo;
+                    } else {
+                        anterior->proximo = atual->proximo;
+                    }
+                    if (atual->proximo != NULL) {
+                        atual->proximo->anterior = anterior;
+                    }
+                    free(atual);
+                    break;
+                }
+                anterior = atual;
+                atual = atual->proximo;
+            }
+            *listaNomes = inserirNaLista(*listaNomes, nodo->dados->nome);
+        }
+
+        printf(GREEN "Alteracoes confirmadas.\n" RESET);
+    } else {
+        printf(RED "Alteracoes canceladas.\n" RESET);
+    }
 }
+
 
 
 void excluirRegistro(NodoLista** listaNomes, NodoArvore** arvoreCPFs, NodoListaDinamica* listaDados) {
@@ -238,29 +287,38 @@ void excluirRegistro(NodoLista** listaNomes, NodoArvore** arvoreCPFs, NodoListaD
         return;
     }
 
-    *arvoreCPFs = removerDaArvore(*arvoreCPFs, cpf);
+    int confirmar;
+    printf(BOLD YELLOW "Confirmar Exclusao? (1 - Sim, 2 - Nao): " RESET);
+    scanf("%d", &confirmar);
 
-    NodoLista* nodoNomeAtual = *listaNomes;
-    NodoLista* anterior = NULL;
-    while (nodoNomeAtual != NULL) {
-        if (strcmp(nodoNomeAtual->nome, nodo->dados->nome) == 0) {
-            if (anterior == NULL) {
-                *listaNomes = nodoNomeAtual->proximo;
-            } else {
-                anterior->proximo = nodoNomeAtual->proximo;
+    if (confirmar == 1) {
+        *arvoreCPFs = removerDaArvore(*arvoreCPFs, cpf);
+
+        NodoLista* nodoNomeAtual = *listaNomes;
+        NodoLista* anterior = NULL;
+        while (nodoNomeAtual != NULL) {
+            if (strcmp(nodoNomeAtual->nome, nodo->dados->nome) == 0) {
+                if (anterior == NULL) {
+                    *listaNomes = nodoNomeAtual->proximo;
+                } else {
+                    anterior->proximo = nodoNomeAtual->proximo;
+                }
+                if (nodoNomeAtual->proximo != NULL) {
+                    nodoNomeAtual->proximo->anterior = anterior;
+                }
+                free(nodoNomeAtual);
+                break;
             }
-            if (nodoNomeAtual->proximo != NULL) {
-                nodoNomeAtual->proximo->anterior = anterior;
-            }
-            free(nodoNomeAtual);
-            break;
+            anterior = nodoNomeAtual;
+            nodoNomeAtual = nodoNomeAtual->proximo;
         }
-        anterior = nodoNomeAtual;
-        nodoNomeAtual = nodoNomeAtual->proximo;
-    }
 
-    printf(GREEN "Registro excluido com sucesso.\n" RESET);
+        printf(GREEN "Registro excluido com sucesso.\n" RESET);
+    } else {
+        printf(RED "Exclusao cancelada.\n" RESET);
+    }
 }
+
 
 void procurarRegistro(NodoArvore* arvoreCPFs) {
     char cpf[12];
@@ -274,7 +332,7 @@ void procurarRegistro(NodoArvore* arvoreCPFs) {
     }
 
     Dados* dados = nodo->dados;
-    printf(UNDERLINE "CPF: %s\n Nome: %s\n Endereco: %s\n Telefone: %s\n Email: %s\n" RESET,
+    printf(UNDERLINE " CPF: %s\n Nome: %s\n Endereco: %s\n Telefone: %s\n Email: %s\n" RESET,
            dados->cpf, dados->nome, dados->endereco, dados->telefone, dados->email);
 }
 
