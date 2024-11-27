@@ -191,7 +191,6 @@ void adicionarRegistro(NodoLista** listaNomes, NodoArvore** arvoreCPFs, NodoList
 }
 
 
-
 void alterarRegistro(NodoLista** listaNomes, NodoArvore* arvoreCPFs, NodoListaDinamica* listaDados) {
     char cpf[12];
     printf("Digite o CPF: ");
@@ -203,54 +202,51 @@ void alterarRegistro(NodoLista** listaNomes, NodoArvore* arvoreCPFs, NodoListaDi
         return;
     }
 
-    while (getchar() != '\n');
+    while (getchar() != '\n'); // Limpar o buffer de entrada
 
-    char nome[100], endereco[200], telefone[15], email[100];
-    char nomeAntigo[100];
-    strcpy(nomeAntigo, nodo->dados->nome);
+    // Variáveis temporárias para novas informações
+    char novoNome[100], novoEndereco[200], novoTelefone[15], novoEmail[100];
+    strcpy(novoNome, nodo->dados->nome);
+    strcpy(novoEndereco, nodo->dados->endereco);
+    strcpy(novoTelefone, nodo->dados->telefone);
+    strcpy(novoEmail, nodo->dados->email);
 
     printf("Insira os novos valores ou apenas aperte ENTER:\n");
 
     printf("Nome: %s \nNovo nome: ", nodo->dados->nome);
-    fgets(nome, sizeof(nome), stdin);
-    nome[strcspn(nome, "\n")] = '\0';
-    if (strlen(nome) > 0) {
-        strcpy(nodo->dados->nome, nome);
-    }
+    fgets(novoNome, sizeof(novoNome), stdin);
+    novoNome[strcspn(novoNome, "\n")] = '\0'; // Remover '\n'
 
     printf("Endereco: %s \nNovo endereco: ", nodo->dados->endereco);
-    fgets(endereco, sizeof(endereco), stdin);
-    endereco[strcspn(endereco, "\n")] = '\0';
-    if (strlen(endereco) > 0) {
-        strcpy(nodo->dados->endereco, endereco);
-    }
+    fgets(novoEndereco, sizeof(novoEndereco), stdin);
+    novoEndereco[strcspn(novoEndereco, "\n")] = '\0';
 
     printf("Telefone: %s \nNovo telefone: ", nodo->dados->telefone);
-    fgets(telefone, sizeof(telefone), stdin);
-    telefone[strcspn(telefone, "\n")] = '\0';
-    if (strlen(telefone) > 0) {
-        strcpy(nodo->dados->telefone, telefone);
-    }
+    fgets(novoTelefone, sizeof(novoTelefone), stdin);
+    novoTelefone[strcspn(novoTelefone, "\n")] = '\0';
 
     printf("Email: %s \nNovo email: ", nodo->dados->email);
-    fgets(email, sizeof(email), stdin);
-    email[strcspn(email, "\n")] = '\0';
-    if (strlen(email) > 0) {
-        strcpy(nodo->dados->email, email);
-    }
+    fgets(novoEmail, sizeof(novoEmail), stdin);
+    novoEmail[strcspn(novoEmail, "\n")] = '\0';
 
     int confirmar;
     printf(BOLD YELLOW "Confirma Alteracoes? (1 - Sim, 2 - Nao): " RESET);
     scanf("%d", &confirmar);
 
     if (confirmar == 1) {
-        // Reorganizar a lista de nomes se necessário
-        if (strcmp(nomeAntigo, nodo->dados->nome) != 0) {
+        // Atualizar os dados somente após confirmação
+        strcpy(nodo->dados->nome, strlen(novoNome) > 0 ? novoNome : nodo->dados->nome);
+        strcpy(nodo->dados->endereco, strlen(novoEndereco) > 0 ? novoEndereco : nodo->dados->endereco);
+        strcpy(nodo->dados->telefone, strlen(novoTelefone) > 0 ? novoTelefone : nodo->dados->telefone);
+        strcpy(nodo->dados->email, strlen(novoEmail) > 0 ? novoEmail : nodo->dados->email);
+
+        // Reorganizar a lista de nomes se o nome foi alterado
+        if (strcmp(novoNome, nodo->dados->nome) != 0) {
             NodoLista* atual = *listaNomes;
             NodoLista* anterior = NULL;
 
             while (atual != NULL) {
-                if (strcmp(atual->nome, nomeAntigo) == 0) {
+                if (strcmp(atual->nome, nodo->dados->nome) == 0) {
                     if (anterior == NULL) {
                         *listaNomes = atual->proximo;
                     } else {
