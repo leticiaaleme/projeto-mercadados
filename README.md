@@ -3,17 +3,38 @@
 #### _Gerenciador de Registros_
 
 ***
+
 #### Desenvolvido por:
 - [Cleber Alexandre Souza Júnior](https://github.com/SouzaCleber98)
 - Guilherme Garcia
 - [Letícia Cristina Leme](https://github.com/leticiaaleme)
 - Mateus de Oliveira
 - [Murilo Camillo Martins](https://github.com/MuriloCamillo)
+
 ***
+
+## Tecnologias utilizadas:
+**1. Linguagem de programação: C**
+Utilizada pela familiaridade da equipe com a linguagem.
+**2. Bibliotecas: <stdio.h>, <stdlib.h> e <string.h>.**
+Utilizadas conforme a necessidade do projeto, para a manipulação da entrada e saída de dados e interações com o console; para alocação de memória e para manipulação de string, respectivamente.
+**3. IDE’s e Ferramentas de desenvolvimento: CLion, VSCode, Replit.**
+Utilizadas pela praticidade, versatilidade e organização, além da familiaridade da equipe.
+**4. Controle de versão: Git – GitHub**
+Utilizados para gerenciar as versões do código e permitir a colaboração entre a equipe.
+**5. Comunicação: MicrosfotTeams, WhatsApp e Discord.**
+Utilizados para melhor comunicação entre os membros da equipe (discussões sobre o projeto, estimativas, pokerplanning, etc).
+**6. IA’s: Chat GPT e Gemini Advanced.**
+Utilizadas como ferramentas de suporte durante o desenvolvimento do projeto, auxiliando na identificação e correção de erros, esclarecimento de dúvidas sobre sintaxe e boas práticas de programação, além de fornecer referências confiáveis para pesquisa e aprimoramento do sistema. 
+
+
+***
+
 ## Introdução
 Neste projeto, desenvolvemos um Gerenciador de Dados Cadastrais visando a implantação em depósitos de supermercados, que permite aos usuários inserirem, alterarem, excluírem e fizessem buscas nos cadastros dos clientes da empresa, auxiliando no planejamento logístico na hora das entregas. O objetivo principal é fornecer uma ferramenta versátil e amigável que atenda às necessidades do cliente, facilitando o trabalho dos entregadores que farão a rota de entregas.
 ### Visão do produto
 Para administradores de mercados que buscam praticidade e eficiência no gerenciamento de registros pessoais de seus clientes, o MercadaDos é um sistema de cadastro e consulta de dados que oferece uma estrutura organizada e de fácil acesso. Ao evitar as dificuldades e o tempo gasto na busca manual de informações, nosso produto utiliza árvores binárias e listas duplamente ligadas para garantir uma rápida inserção, pesquisa e exclusão de registros, além de relatórios ordenados por nome, proporcionando uma experiência organizada e ágil aos usuários, facilitando a logística na hora das entregas.
+
 ***
 
 ## Product Backlog
@@ -28,6 +49,7 @@ Para administradores de mercados que buscam praticidade e eficiência no gerenci
 -	O sistema deve apresentar uma interface intuitiva ao usuário;
 
 ***
+
 ## Diagramas da UML
 
 ### Diagrama de Caso de Uso
@@ -95,28 +117,20 @@ Gerar Relatório - Fluxo Básico
 
 <img src="assets/classes.png" width="700">
 
-
 ***
 
 ## Problemas e Soluções
 Durante o desenvolvimento do projeto a equipe encontrou dois potenciais problemas que poderiam vir a ocorrer, apontados já durante a fase inicial. O primeiro seria o cenário onde o usuário da aplicação, ao inserir os dados cadastrais do campo CPF, o faz utilizando de letras e/ou caracteres especiais, causando problema na coleta dos dados. Para a solução do problema, a equipe buscou implementar validações de entrada para que apenas caracteres numerais sejam aceitos, além de limitar o número de caracteres específicos para o campo CPF em onze (número padrão). Caso o usuário insira de forma errada os valores esperados para o campo, o sistema retornará uma mensagem de aviso, e solicitará que insira novamente os dados.
 O segundo problema seria a perda de registros, caso o usuário da aplicação no momento de fazer a exclusão de um registro, se confundisse e inserisse o número de CPF errado para ser excluído. A fim de evitar essa situação o sistema emitirá uma mensagem de aviso ao usuário, para que este confirme a sua operação.
+
 ***
 
 ## Conclusão
 Após o desenvolvimento deste projeto, concluímos que o MercadaDos oferece uma solução robusta e eficaz para manipulação de dados cadastrais. Com uma interface amigável e intuitiva, o aplicativo atende às necessidades dos usuários (colaboradores da rede), proporcionando um auxílio na hora destes realizarem o planejamento logístico das entregas do mercado. Este projeto demonstra nossa capacidade de criar ferramentas versáteis que agregam valor ao facilitar tarefas cotidianas do cenário de um sistema de entregas de uma rede de supermercados, contribuindo para a praticidade e eficiência no dia a dia.
+
 ***
 
-## Referências
-GeeksforGeeks - Linguagem C
-TutorialsPoint - Guia sobre C
-GeeksforGeeks - Estruturas de Dados e Algoritmos
-Canal Programar Em – Professor Nava
-OpenAI (ChatGPT)
-Google Gemini AI
-
-
-- ### Guia de Usuário
+## Guia de Usuário
 
 O usuário ao acessar o sistema se depara com uma interface simples que lhe oferece cinco opções: “Adicionar”, “Alterar”, “Excluir”, “Procurar” e a funcionalidade de “Gerar relatórios”.
 
@@ -164,4 +178,13 @@ git clone https://github.com/leticiaaleme/projeto-mercadados.git
   
 - Execute o projeto para iniciar o MercadaDos;
 
-- Siga as instruções fornecidas na interface. 
+- Siga as instruções fornecidas na interface.
+
+***
+## Referências
+- GeeksforGeeks - Linguagem C
+- TutorialsPoint - Guia sobre C
+- GeeksforGeeks - Estruturas de Dados e Algoritmos
+- Canal Programar Em – Professor Nava
+- OpenAI (ChatGPT)
+- Google Gemini AI
