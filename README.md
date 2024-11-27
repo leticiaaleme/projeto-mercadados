@@ -144,7 +144,7 @@ Se ocorrer do usuário colocar caracteres inválidos ou um número menor ou supe
 
 ![tela-aviso](assets/guia03.png)  
 
-Caso o usuário selecione “Alterar”, será pedido que ele informe o CPF do cadastro a ser alterado. Ele poderá alterar qualquer campo que desejar e, caso não queira alterar um campo específico, basta apertar a tecla <Enter>.  
+Caso o usuário selecione “Alterar”, será pedido que ele informe o CPF do cadastro a ser alterado. Ele poderá alterar qualquer campo que desejar e, caso não queira alterar um campo específico, basta apertar a tecla `ENTER`.  
 
 ![tela-alterar](assets/guia04.png)  
 
