@@ -14,18 +14,18 @@
 ***
 
 ## Tecnologias utilizadas:
-**1. Linguagem de programação: C**
-Utilizada pela familiaridade da equipe com a linguagem.
-**2. Bibliotecas: <stdio.h>, <stdlib.h> e <string.h>.**
-Utilizadas conforme a necessidade do projeto, para a manipulação da entrada e saída de dados e interações com o console; para alocação de memória e para manipulação de string, respectivamente.
-**3. IDE’s e Ferramentas de desenvolvimento: CLion, VSCode, Replit.**
-Utilizadas pela praticidade, versatilidade e organização, além da familiaridade da equipe.
-**4. Controle de versão: Git – GitHub**
-Utilizados para gerenciar as versões do código e permitir a colaboração entre a equipe.
-**5. Comunicação: MicrosfotTeams, WhatsApp e Discord.**
-Utilizados para melhor comunicação entre os membros da equipe (discussões sobre o projeto, estimativas, pokerplanning, etc).
-**6. IA’s: Chat GPT e Gemini Advanced.**
-Utilizadas como ferramentas de suporte durante o desenvolvimento do projeto, auxiliando na identificação e correção de erros, esclarecimento de dúvidas sobre sintaxe e boas práticas de programação, além de fornecer referências confiáveis para pesquisa e aprimoramento do sistema. 
+1. **Linguagem de programação: C**  
+   Utilizada pela familiaridade da equipe com a linguagem.
+2. **Bibliotecas: `<stdio.h>`, `<stdlib.h>` e `<string.h>`**  
+   Utilizadas conforme a necessidade do projeto, para a manipulação da entrada e saída de dados e interações com o console; para alocação de memória e para manipulação de string, respectivamente.
+3. **IDE’s e Ferramentas de desenvolvimento: CLion, VSCode, Replit**  
+   Utilizadas pela praticidade, versatilidade e organização, além da familiaridade da equipe.
+4. **Controle de versão: Git – GitHub**  
+   Utilizados para gerenciar as versões do código e permitir a colaboração entre a equipe.
+5. **Comunicação: Microsoft Teams, WhatsApp e Discord**  
+   Utilizados para melhor comunicação entre os membros da equipe (discussões sobre o projeto, estimativas, poker planning, etc).
+6. **IA’s: Chat GPT e Gemini Advanced**  
+   Utilizadas como ferramentas de suporte durante o desenvolvimento do projeto, auxiliando na identificação e correção de erros, esclarecimento de dúvidas sobre sintaxe e boas práticas de programação, além de fornecer referências confiáveis para pesquisa e aprimoramento do sistema.
 
 
 ***
@@ -108,14 +108,14 @@ Gerar Relatório - Fluxo Básico
 4.	O sistema exibe o relatório na tela
 
 
-### Diagrama de Atividades
+### Diagrama de Atividades  
 
-<img src="assets/atividades.png" width="800">
+<img src="assets/atividades.png" width="800">  
 
 
-### Modelagem de Classes
+### Modelagem de Classes  
 
-<img src="assets/classes.png" width="700">
+<img src="assets/classes.png" width="700">  
 
 ***
 
@@ -132,37 +132,37 @@ Após o desenvolvimento deste projeto, concluímos que o MercadaDos oferece uma 
 
 ## Guia de Usuário
 
-O usuário ao acessar o sistema se depara com uma interface simples que lhe oferece cinco opções: “Adicionar”, “Alterar”, “Excluir”, “Procurar” e a funcionalidade de “Gerar relatórios”.
+O usuário ao acessar o sistema se depara com uma interface simples que lhe oferece cinco opções: “Adicionar”, “Alterar”, “Excluir”, “Procurar” e a funcionalidade de “Gerar relatórios”.  
 
-![tela-inicio](assets/guia01.png)
+![tela-inicio](assets/guia01.png)  
 
-Caso o usuário selecione “Adicionar”, será pedido para que ele informe CPF, Nome, E-mail, Endereço e Telefone da pessoa que deseja cadastrar.
+Caso o usuário selecione “Adicionar”, será pedido para que ele informe CPF, Nome, E-mail, Endereço e Telefone da pessoa que deseja cadastrar.  
 
-![tela-adicionar](assets/guia02.png)
+![tela-adicionar](assets/guia02.png)  
 
-Se ocorrer do usuário colocar caracteres inválidos ou um número menor ou superior ao esperado para o campo CPF, o sistema apresentará uma mensagem de aviso.
+Se ocorrer do usuário colocar caracteres inválidos ou um número menor ou superior ao esperado para o campo CPF, o sistema apresentará uma mensagem de aviso.  
 
-![tela-aviso](assets/guia03.png)
+![tela-aviso](assets/guia03.png)  
 
-Caso o usuário selecione “Alterar”, será pedido que ele informe o CPF do cadastro a ser alterado. Ele poderá alterar qualquer campo que desejar e, caso não queira alterar um campo específico, basta apertar a tecla <Enter>.
+Caso o usuário selecione “Alterar”, será pedido que ele informe o CPF do cadastro a ser alterado. Ele poderá alterar qualquer campo que desejar e, caso não queira alterar um campo específico, basta apertar a tecla <Enter>.  
 
-![tela-alterar](assets/guia04.png)
+![tela-alterar](assets/guia04.png)  
 
-Ao fim do processo, o usuário deve confirmar a operação.
+Ao fim do processo, o usuário deve confirmar a operação.  
 
-![tela-confirmar](assets/guia05.png)
+![tela-confirmar](assets/guia05.png)  
 
-Caso o usuário selecionar a opção “Excluir”, será pedido que ele informe o CPF a ser apagado dos registros. Ao fim do processo o usuário deve confirmar a ação da exclusão.
+Caso o usuário selecionar a opção “Excluir”, será pedido que ele informe o CPF a ser apagado dos registros. Ao fim do processo o usuário deve confirmar a ação da exclusão.  
 
-![tela-excluir](assets/guia06.png)
+![tela-excluir](assets/guia06.png)  
 
-Caso o usuário selecione a opção “Procurar”, ele deverá informar o CPF a ser procurado e o sistema retornará os dados completos.
+Caso o usuário selecione a opção “Procurar”, ele deverá informar o CPF a ser procurado e o sistema retornará os dados completos.  
 
-![tela-procurar](assets/guia07.png)
+![tela-procurar](assets/guia07.png)  
 
-Caso a opção selecionada seja a de “Relatório”, o sistema retornará todos os registros cadastrados em ordem alfabética, além de criar um arquivo .txt contendo as informações.
+Caso a opção selecionada seja a de “Relatório”, o sistema retornará todos os registros cadastrados em ordem alfabética, além de criar um arquivo .txt contendo as informações.  
 
-![tela-relatorio](assets/guia08.png)
+![tela-relatorio](assets/guia08.png)  
 
 
 ***
@@ -181,7 +181,8 @@ git clone https://github.com/leticiaaleme/projeto-mercadados.git
 - Siga as instruções fornecidas na interface.
 
 ***
-## Referências
+
+## Referências  
 - GeeksforGeeks - Linguagem C
 - TutorialsPoint - Guia sobre C
 - GeeksforGeeks - Estruturas de Dados e Algoritmos
